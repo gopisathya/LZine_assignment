@@ -1,6 +1,10 @@
 app.controller('maincontroller',function($scope,$rootScope){
 
 
+
+
+
+
 })
 
 app.run(function($rootScope, $injector) {

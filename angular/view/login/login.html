@@ -1,6 +1,6 @@
 
 <div class="col45 bgblue " >
-  <h3 style="color:white;border-bottom: 1px solid #fff;padding-bottom: 10px;text-align: center;">Welcome To LZine_Assignment</h3>
+  <h3 style="color:white;border-bottom: 1px solid #fff;padding-bottom: 10px;text-align: center;">Welcome To LZine Assignment</h3>
 
           <div class="col22" style="padding-left:24%;padding-right: 24%;padding-top:8%">
               <md-content md-theme="docs-dark"  layout-padding>
@@ -39,16 +39,28 @@
                       </div>
                       <div class="clearboth"></div>
 
+                      <div class="row " style="padding-left: 18%" layout-xs="column">
+                       <button class="loginBtn loginBtn--facebook">
+                      Login with Facebook
+                    </button>
+
+                    <button   ng-click="onGoogleLogin()" class="loginBtn loginBtn--google">
+                      Login with Google
+                    </button>
+                    </div>
+
+                    <div class="clearboth"></div>
+
                       <!-- <pre>{{carrymodelLoginForm.email.$pristine |json}}</pre> -->
-                      <div layout="row" layout-xs="column"> 
+                      <div layout="row" > 
 
-
+<h4>{{gmail.username}}</h4>
+<h4>{{gmail.email}}</h4>
                       <div flex class="text-center">
 
 
 
                       <md-button  class="md-raised md-primary" ng-click="loginverified(carrymodel)"  ng-disabled="!carrymodelLoginForm.$valid">Login</md-button>  
-
 
 
                       <div class="clearboth"></div>
@@ -130,8 +142,16 @@
           </md-content>
 
           </div>
-
-
+<script type="text/javascript">
+  (function(){
+    var p = document.createElement('script');
+    p.type ='text/javascript';
+    p.async =true;
+    p.src='https://apis.google.com/js/client.js?onload=onLoadFunction';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(p, s);
+  })();
+</script>
 
 <!-- css for login screen -->
 <link rel="stylesheet" type="text/css" href="design/css/extra/login/login.css">

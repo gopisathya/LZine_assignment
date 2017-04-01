@@ -23,6 +23,15 @@ app.use(bodyParser.json());
 var jwt = require('jsonwebtoken');
 
 
+function onLoadFunction() {
+    gapi.client.setApis('AIzaSyBoq7uY_uBlvegU_3g-v8lxg_-l4YRaAfk');
+    gapi.client.load('plus', 'v1', function(){})
+}
+
+
+
+
+
 /** INITIALIZE **/
 app.get('/',(req,res) => {
     res.send("The Api is at http://localhost:" + port + "/api");

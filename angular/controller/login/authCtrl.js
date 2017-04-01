@@ -6,6 +6,11 @@ console.log("Inside authCtrl");
 
 
 
+$scope.gmail = {
+    usename:"",
+    email:""
+
+};
 
 
 $scope.onTabChanges = function(CurrentIndex){
@@ -50,6 +55,42 @@ $scope.register = function(carrymodel){
 
 
 }
+
+
+
+
+
+$scope.onGoogleLogin = function(){
+    var params ={
+        'clientid' : '984123710656-v26pv2ird66mi5ckhf7csjm70o8b3742.apps.googleusercontent.com',
+        'cookiepolicy': 'single_host_origin',
+        'callback': function(result){
+            if(result['status']['signed_in']){
+                var request =gapi.client.plus.people.get(
+                    {
+                        'userId':'me'
+                    }
+                    );
+                request.execute(function(resp){
+                    $scope.$apply(function() {
+                        $scope.gmail.username =  resp.displayName;
+                        $scope.email = resp.emails[0].value;
+                    });
+                });
+            }
+
+        },
+        'approvalprompt':'force',
+        'scope':'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+    };
+
+    gapi.auth.signIn(params)
+}
+
+
+
+
+
 
 function randomPasswordGenerator(length) {
     var chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOP1234567890";
