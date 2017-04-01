@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<![if IE 9 ]><html data-ng-app="app"><![endif]>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>LZINE TEST</title>
+    
+    
+	
+
+<!-- *********** -->
+<!-- CSS STARTS -->
+<!-- *********** -->
+
+<!-- EXTRA -->
+<link href="design/css/wrapper/angular-material.css" rel="stylesheet">
+<link href="design/css/extra/animate.min.css" rel="stylesheet">
+<link href="design/css/extra/materialfont.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="design/css/style.css">
+
+
+
+
+	<!-- WRAPPER -->
+<script src="design/js/wrapper/jquery.min.js"></script> <!-- 1 -->
+<script src="design/js/wrapper/angular.js"></script> <!-- 2 -->
+<script src="design/js/wrapper/angular-material.js"></script><!-- 2 -->
+<script src="design/js/wrapper/angular-aria.js"></script><!-- 2 -->
+<script src="design/js/wrapper/angular-message.js"></script><!-- 2 -->
+<script type="text/javascript" src="design/js/wrapper/ngStorage.min.js"></script>
+
+<!-- EXTRA -->
+<script src="design/js/extra/angular-animate.min.js"></script><!-- 3 -->
+<script src="design/js/extra/angular-resource.min.js"></script><!-- 4 -->
+<script src="design/js/extra/angular-ui-router.min.js"></script><!-- 5 -->
+
+<!-- *********** -->
+<!-- CONTROLLER/WRAPPER -->
+<!-- *********** -->
+<script type="text/javascript" src="angular/controller/wrapper/module.js"></script>
+<script type="text/javascript" src="angular/controller/wrapper/config.js"></script>
+<script type="text/javascript" src="angular/controller/wrapper/maincontroller.js"></script>
+
+
+<!-- Auth controller and Service -->
+<script type="text/javascript" src="angular/controller/login/authCtrl.js"></script>
+<script type="text/javascript" src="angular/service/auth/authService.js"></script>
+
+<!-- Encryption and Decryption -->
+<script type="text/javascript" src="design/js/encrypt_decrypt/CryptoJSCipher.js"></script>
+<script type="text/javascript" src="design/js/encrypt_decrypt/angularjs-crypto.js"></script>
+<script type="text/javascript" src="design/js/encrypt_decrypt/aes.js"></script>
+<script src="design/js/CryptoJS/rollups/aes.js"></script>
+
+<!-- jwt -->
+<script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
+<script type="text/javascript" src="angular/service/jwtHelper.js"></script>
+<script type="text/javascript" src="angular/service/interceptors.js"></script>
+
+<!-- authenticationFactory -->
+<script type="text/javascript" src="angular/service/authenticationFactory.js"></script>
+<!-- cryptoservice -->
+<script type="text/javascript" src="angular/service/auth/cryptoService.js"></script>
+
+
+
+</head>
+<body>
+
+<data ui-view="template"></data>
+
+</body>
+</html>
