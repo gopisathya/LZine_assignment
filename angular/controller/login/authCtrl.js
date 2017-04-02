@@ -1,18 +1,13 @@
-app.controller('authCtrl',function($scope,$rootScope,authService,$localStorage){
+app.controller('authCtrl',function($scope,$rootScope,authService,$localStorage,$state,$mdToast,$window,$location,$timeout,$document){
 
-
-
-console.log("Inside authCtrl");
-
-
-
+ // initalizes to googleapis
 $scope.gmail = {
     usename:"",
     email:""
 
 };
 
-
+// Find tab changes
 $scope.onTabChanges = function(CurrentIndex){
 	$scope.carrymodel = {};
 	$scope.carrymodel.email = null;
@@ -21,24 +16,29 @@ $scope.onTabChanges = function(CurrentIndex){
     switch(CurrentIndex) {
     	case 1 :
     	this.carrymodelLoginForm.$setUntouched();
-    	// $scope.login();
     	break;
     	case 2 :
-    	// this.carrymodelLoginForm.$setUntouched();
-    	// $scope.register();
-    	break;
+        this.carrymodelLoginForm.$setUntouched();
+        break;
     	
     }
 }
 
+// Login verification
 
 $scope.loginverified = function(carrymodel){
 
 	console.log("enter Login Function");
-	
+    authService.login(carrymodel).then(function(response) 
+      { 
+              console.info("result"+JSON.stringify(response.data));
+              $state.go('dashboard');
+
+   });
 
 }
 
+// Register Form function
 
 $scope.register = function(carrymodel){
 			var passmodel ={};
@@ -50,15 +50,13 @@ $scope.register = function(carrymodel){
 
             authService.register(passmodel).then(function(response){
             	console.log("RES " + JSON.stringify(response));
-                // var registerResponse = response.result;
+                $mdToast.show($mdToast.simple().textContent('Updated SuccessFully!').hideDelay(2500).action('OK'));
+                $scope.carrymodel={ email :undefined,password:''}; 
+                $window.location.reload();
             })
-
-
 }
 
-
-
-
+ // onGoogleLogin function
 
 $scope.onGoogleLogin = function(){
     var params ={
@@ -66,15 +64,15 @@ $scope.onGoogleLogin = function(){
         'cookiepolicy': 'single_host_origin',
         'callback': function(result){
             if(result['status']['signed_in']){
-                var request =gapi.client.plus.people.get(
-                    {
-                        'userId':'me'
-                    }
-                    );
+                var request = gapi.client.request({'path': 'https://people.googleapis.com/v1/people/me'});
+                // console.info(typeof request);
+                // var request = gapi.client.Request.execute(function(e){console.info(e);});
                 request.execute(function(resp){
+                    console.info(resp);
                     $scope.$apply(function() {
-                        $scope.gmail.username =  resp.displayName;
-                        $scope.email = resp.emails[0].value;
+                        $scope.gmail.username =  resp.names[0].displayName;
+                        $scope.gmail.email = resp.emailAddresses[0].value;
+                        $state.go('dashboard');
                     });
                 });
             }
@@ -84,14 +82,10 @@ $scope.onGoogleLogin = function(){
         'scope':'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
     };
 
-    gapi.auth.signIn(params)
+    gapi.auth.signIn(params);
 }
 
-
-
-
-
-
+// randomPasswordGenerator
 function randomPasswordGenerator(length) {
     var chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOP1234567890";
     var pass = "";
@@ -101,7 +95,8 @@ function randomPasswordGenerator(length) {
     }
     return pass;
 }
-var EncryptKey = "GOPINATH";
+
+var EncryptKey = "ZLINE";
 function encryptedAESdata(OriginalString) {
         var encryptedAES = CryptoJS.AES.encrypt(OriginalString, EncryptKey);
         return encryptedAES.toString();
@@ -113,7 +108,14 @@ function encryptedAESdata(OriginalString) {
         return decrypted;
     }
 
+// Logout
 
+$scope.Logout = function(){
+    console.log("enter Logout Function");
+
+    $state.go('login');
+
+}
 });
 
 

@@ -1,6 +1,5 @@
 var baseUrl = "http://localhost:3000/api";
 
-
 app.factory('authFactory', function($http,$q,$rootScope, $state, $location, $window,redirectToUrlAfterLogin){
 	return{
 
@@ -18,11 +17,6 @@ app.factory('authFactory', function($http,$q,$rootScope, $state, $location, $win
           }
         console.log("isAuthenticated get::"+JSON.stringify(get));
        return get;
-
-
-
-
-
-   }, 
+     }, 
 	}
 })

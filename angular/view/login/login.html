@@ -1,6 +1,6 @@
 
 <div class="col45 bgblue " >
-  <h3 style="color:white;border-bottom: 1px solid #fff;padding-bottom: 10px;text-align: center;">Welcome To LZine Assignment</h3>
+  <h3 style="color:white;border-bottom: 1px solid #fff;padding-bottom: 10px;text-align: center;">Welcome To LZine</h3>
 
           <div class="col22" style="padding-left:24%;padding-right: 24%;padding-top:8%">
               <md-content md-theme="docs-dark"  layout-padding>
@@ -9,8 +9,6 @@
                       <md-tab label="Login" md-on-select="onTabChanges(1)" >
                       <md-content class="md-padding1">
                       <ng-form name="carrymodelLoginForm" >
-
-
                       <div class="logincontainer">
                       <div class="flex">
                       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -19,8 +17,7 @@
                       <label>E-mail ID</label>
                       <md-icon class="md-default-theme material-icons"><i class="material-icons">email</i></md-icon> 
                       <input focus-me required  tabindex="1" type="email" autocomplete="off" name="email"  ng-model="carrymodel.email"  ng-pattern="/^.+@.+\..+$/"  >
-
-                      </md-input-container>
+                        </md-input-container>
                       </div>
                       </div>
 
@@ -28,58 +25,31 @@
                       <div class="col-md-12 col-sm-12 col-xs-12">
                       <md-input-container class="md-block">
                       <label>Password</label>
-
                       <md-icon class="md-default-theme material-icons"><i class="zmdi zmdi-lock-outline" aria-hidden="true"></i></md-icon>
                       <input required  name="password"   type="password" ng-model="carrymodel.password" >
-
-
                       </md-input-container>
                       </div>
                       </div>
                       </div>
                       <div class="clearboth"></div>
 
-                      <div class="row " style="padding-left: 18%" layout-xs="column">
-                       <button class="loginBtn loginBtn--facebook">
-                      Login with Facebook
-                    </button>
-
-                    <button   ng-click="onGoogleLogin()" class="loginBtn loginBtn--google">
+                      <div layout="row" > 
+                      <div flex class="text-center">
+                      <button ng-click="onGoogleLogin()" class="loginBtn loginBtn--google" style="margin-left: 7%">
                       Login with Google
                     </button>
-                    </div>
 
-                    <div class="clearboth"></div>
-
-                      <!-- <pre>{{carrymodelLoginForm.email.$pristine |json}}</pre> -->
-                      <div layout="row" > 
-
-<h4>{{gmail.username}}</h4>
-<h4>{{gmail.email}}</h4>
-                      <div flex class="text-center">
-
-
-
-                      <md-button  class="md-raised md-primary" ng-click="loginverified(carrymodel)"  ng-disabled="!carrymodelLoginForm.$valid">Login</md-button>  
-
-
+                    <md-button  class="md-raised md-primary" style="float: right;"  ng-click="loginverified(carrymodel)"  ng-disabled="!carrymodelLoginForm.$valid">Login</md-button>
                       <div class="clearboth"></div>
-
                       </div>
-
-
                       </div>
-
-
                       </section>
                       </ng-form>
                       </md-content>
                       </md-tab >
                       <!-- Login Ends -->
 
-                      <!-- Register Starts -->
-
-                      
+                      <!-- Register Starts -->                      
                       <md-tab label="Signup" md-on-select="onTabChanges(2)">
                                     <md-content class="md-padding2">
                                         <ng-form name="carrymodelRegisterForm" novalidate>
@@ -91,13 +61,6 @@
                                                             <label>E-mail ID</label>
                                                             <md-icon class="md-default-theme material-icons"><i class="material-icons">email</i></md-icon>
                                                             <input required type="email" name="email"  ng-model="carrymodel.email" ng-pattern="/^.+@.+\..+$/" >
-                                                            <!--  <div ng-messages="carrymodelRegisterForm.email.$error" ng-if="carrymodelRegisterForm.email.$touched">
-                                                                <div ng-message='required'> Its not a valid mail address</div>
-                                                                      <div ng-message="[required,ng-pattern]">check ur email !</div>
-
-
-                                                            </div> -->
-                                                        
                                                         </md-input-container>
                                                     </div>
                                                 </div>
@@ -113,7 +76,6 @@
                                                     </div>
                                                 </div>
                                               
-                                             
                                               <div class="row">
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <md-input-container class="md-block">
@@ -121,15 +83,14 @@
                                                             <md-icon class="md-default-theme material-icons"><i class="zmdi zmdi-lock-outline" aria-hidden="true"></i></md-icon>
                                                             <input required type="password" name="Conformpassword" autocomplete="off" ng-model="carrymodel.Conformpassword" data-ng-match="Password" >
                                                             
-                                                                    <!-- <span class="help-block" data-ng-show="myForm.passwordCompare.$error.match">Passwords do not match.</span></div> -->
                                                         </md-input-container>
                                                     </div>
                                                 </div>
 
 
-                                                <!-- <pre>{{carrymodelRegisterForm.firstname |json}}</pre> -->
+                                                
                                                 <div layout="row" layout-xs="column " style="margin:0 auto;width:100px;">
-                                                 <!-- || ! emaildisable -->
+                                                 
                                                     <md-button class="md-raised md-primary" ng-click="register(carrymodel)" ng-disabled="!carrymodelRegisterForm.$valid">Signup</md-button>
                                                 </div>
                                             </div>
@@ -140,18 +101,22 @@
 
 
           </md-content>
+    </div>
 
-          </div>
-<script type="text/javascript">
-  (function(){
-    var p = document.createElement('script');
-    p.type ='text/javascript';
-    p.async =true;
-    p.src='https://apis.google.com/js/client.js?onload=onLoadFunction';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(p, s);
-  })();
-</script>
+
+    <!-- APi  load function-->
+      <script type="text/javascript">
+        (function(){
+          var p = document.createElement('script');
+          p.type ='text/javascript';
+          p.async =true;
+          p.src='https://apis.google.com/js/client.js?onload=onLoadFunction';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(p, s);
+        })();
+
+
+      </script>
 
 <!-- css for login screen -->
 <link rel="stylesheet" type="text/css" href="design/css/extra/login/login.css">

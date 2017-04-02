@@ -6,8 +6,6 @@ var dbjson = {
     "port": 27017
 }
 
-
-
 exports.dbpath = "mongodb://" +  dbjson.host + ":" + dbjson.port + "/" + dbjson.dbname;
-exports.port = 8080;
+exports.port = 2017;
 exports.responseType = "JSON";

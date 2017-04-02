@@ -1,0 +1,30 @@
+
+
+Assignment 2 :
+
+
+my Reivew:
+
+
+1. Have to improve my clinet-side, server-side validation.(for safe side -  data protection)
+2. Have to improve ( mailoption or otp ) while enter as login op sign-up.
+3. For User Interface Angualr Material, i am  feel, good  and simple  may be its your suggestion.
+
+
+Reason:
+
+1. I am tried with secure jwt webtoken  module . but atlast-time  i am strucked with some error, so i need some time to solve that.
+2. for OTP and all have some payment gateway .so i wonot go that .
+3. UI (have to improve - matching icons, fonts,and images).
+4. need to minfided my APPLICATION  - gulp to install at last min wonot possible to do this.
+
+
+
+with my limit of time i had finished .
+
+login - email , password or google sign in
+sign up - email ,password ,conform password,
+dashboard work -logout .
+
+
+   Thank you ..

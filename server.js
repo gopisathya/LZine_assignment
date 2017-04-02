@@ -22,15 +22,10 @@ app.use(bodyParser.json());
 
 var jwt = require('jsonwebtoken');
 
-
 function onLoadFunction() {
     gapi.client.setApis('AIzaSyBoq7uY_uBlvegU_3g-v8lxg_-l4YRaAfk');
     gapi.client.load('plus', 'v1', function(){})
 }
-
-
-
-
 
 /** INITIALIZE **/
 app.get('/',(req,res) => {
@@ -40,7 +35,6 @@ app.get('/',(req,res) => {
 app.listen(port,() => {
     console.log("API RUN ON PORT "+port);
 })
-
 
   // CONNECT DATABASE
     mongoose.connect(settings.dbpath, {
@@ -64,10 +58,7 @@ app.listen(port,() => {
        //DATABASE MIGRATION
     var auth_model = require('./server/models/auth_model');
   
-
-
-
     // API CALLS
-    require('./server/api/auth_apis').AuthMaster(app, router,auth_model,jwt);
+    require('./server/api/auth_apis').AuthMaster(app, router, auth_model);
 
 module.exports = router;
