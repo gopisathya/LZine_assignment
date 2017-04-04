@@ -6,7 +6,7 @@
               <md-content md-theme="docs-dark"  layout-padding>
                   <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
                       <!-- LOGIN STARTS -->
-                      <md-tab label="Login" md-on-select="onTabChanges(1)" >
+                      <md-tab label="Login" >
                       <md-content class="md-padding1">
                       <ng-form name="carrymodelLoginForm" >
                       <div class="logincontainer">
@@ -50,18 +50,21 @@
                       <!-- Login Ends -->
 
                       <!-- Register Starts -->                      
-                      <md-tab label="Signup" md-on-select="onTabChanges(2)">
+                      <md-tab label="Signup" >
                                     <md-content class="md-padding2">
                                         <ng-form name="carrymodelRegisterForm" novalidate>
-                                            <div class="logincontainer" ng-show="!singupSuccessfully">
-                                                
+                                            <div class="logincontainer" >
+                                                <!-- ng-show="!singupSuccessfully" -->
                                                 <div class="row">
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <md-input-container class="md-block">
                                                             <label>E-mail ID</label>
                                                             <md-icon class="md-default-theme material-icons"><i class="material-icons">email</i></md-icon>
-                                                            <input required type="email" name="email"  ng-model="carrymodel.email" ng-pattern="/^.+@.+\..+$/" >
-                                                        </md-input-container>
+                                                            <input required type="email" name="email"  autocomplete="off" ng-model="carrymodel.email" ng-pattern="/^.+@.+\..+$/"   ng-change="OnCheckMail(carrymodel.email)">
+                                                              <div ng-show="carrymodel.email" class={{emailclass}}>
+                                                               {{emailstatus}}
+                                                               </div>
+                                                              </md-input-container>
                                                     </div>
                                                 </div>
                                               
@@ -70,7 +73,7 @@
                                                         <md-input-container class="md-block">
                                                             <label>Password</label>
                                                             <md-icon class="md-default-theme material-icons"><i class="zmdi zmdi-lock-outline" aria-hidden="true"></i></md-icon>
-                                                            <input required type="password" name="password" autocomplete="off" ng-model="carrymodel.password" >
+                                                            <input required type="password" name="password" autocomplete="off" ng-model="carrymodel.password"  ng-change="validate2pwd()">
                                                             
                                                         </md-input-container>
                                                     </div>
@@ -81,8 +84,8 @@
                                                         <md-input-container class="md-block">
                                                             <label>Conform Password</label>
                                                             <md-icon class="md-default-theme material-icons"><i class="zmdi zmdi-lock-outline" aria-hidden="true"></i></md-icon>
-                                                            <input required type="password" name="Conformpassword" autocomplete="off" ng-model="carrymodel.Conformpassword" data-ng-match="Password" >
-                                                            
+                                                            <input required type="password" name="confirmpassWord" autocomplete="off" ng-model="carrymodel.confirmpassWord" data-ng-match="carrymodel.password" ng-change="validate2pwd()" >
+                                                             <span>{{PassNotMatch}}</span> 
                                                         </md-input-container>
                                                     </div>
                                                 </div>
@@ -91,7 +94,7 @@
                                                 
                                                 <div layout="row" layout-xs="column " style="margin:0 auto;width:100px;">
                                                  
-                                                    <md-button class="md-raised md-primary" ng-click="register(carrymodel)" ng-disabled="!carrymodelRegisterForm.$valid">Signup</md-button>
+                                                    <md-button class="md-raised md-primary" ng-click="register(carrymodel)" ng-disabled="!carrymodelRegisterForm.$valid||!emaildisable||IsMatch">Signup</md-button>
                                                 </div>
                                             </div>
                                             <span style="clear:both"></span>

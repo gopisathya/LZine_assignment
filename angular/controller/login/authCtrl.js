@@ -1,5 +1,5 @@
 app.controller('authCtrl',function($scope,$rootScope,authService,$localStorage,$state,$mdToast,$window,$location,$timeout,$document){
-
+var EncryptKey="LZINE";
  // initalizes to googleapis
 $scope.gmail = {
     usename:"",
@@ -7,29 +7,18 @@ $scope.gmail = {
 
 };
 
-// Find tab changes
-$scope.onTabChanges = function(CurrentIndex){
-	$scope.carrymodel = {};
-	$scope.carrymodel.email = null;
-    $scope.carrymodel.password = null;
-    console.log("CurrentIndex", CurrentIndex);
-    switch(CurrentIndex) {
-    	case 1 :
-    	this.carrymodelLoginForm.$setUntouched();
-    	break;
-    	case 2 :
-        this.carrymodelLoginForm.$setUntouched();
-        break;
-    	
-    }
-}
 
 // Login verification
 
 $scope.loginverified = function(carrymodel){
 
-	console.log("enter Login Function");
-    authService.login(carrymodel).then(function(response) 
+            var passmodel ={};
+            
+            passmodel.email_id = carrymodel.email;
+            passmodel.password = encryptedAESdata(carrymodel.password);
+            
+	console.log("enter Login Function"+JSON.stringify(passmodel));
+    authService.login(passmodel).then(function(response) 
       { 
               console.info("result"+JSON.stringify(response.data));
               $state.go('dashboard');
@@ -44,10 +33,8 @@ $scope.register = function(carrymodel){
 			var passmodel ={};
 			
 		    passmodel.email_id = carrymodel.email;
-            passmodel.password = encryptedAESdata(randomPasswordGenerator(8));
+            passmodel.password = encryptedAESdata(carrymodel.password);
             passmodel.status = true;
-            console.log("enter register Function"+JSON.stringify(passmodel));
-
             authService.register(passmodel).then(function(response){
             	console.log("RES " + JSON.stringify(response));
                 $mdToast.show($mdToast.simple().textContent('Updated SuccessFully!').hideDelay(2500).action('OK'));
@@ -56,7 +43,40 @@ $scope.register = function(carrymodel){
             })
 }
 
- // onGoogleLogin function
+
+// OnCheckMail function
+$scope.OnCheckMail = function(data){
+            var sendData = {};
+            sendData.email_id = data;
+            
+            authService.OnCheckMail(sendData).then(function(response){
+                console.log(JSON.stringify(response.msg));
+                    $scope.emailstatus= response.msg=="Available" ? "Available*" : "Already Exist";
+            /*enable the div for resend the verification mail*/
+             
+             $scope.emailclass = response.msg== "Available" ? "text-success" :"text-danger";
+             $scope.emaildisable =response.msg == "Available" ? true : false ;
+          });
+
+        } 
+
+//conform password validaion
+$scope.validate2pwd = function() {
+  console.log("okok");
+  /*Not Matching Msg On Submit*/
+  $scope.PassNotMatch="";
+  if ($scope.carrymodel.password != $scope.carrymodel.confirmpassWord) {
+    $scope.IsMatch="true";
+    $scope.PassNotMatch="PassNotMatch";
+    return false;      
+  }else{
+  $scope.IsMatch=false;
+  $scope.PassNotMatch="";
+
+  }
+}
+
+      // onGoogleLogin function
 
 $scope.onGoogleLogin = function(){
     var params ={
@@ -96,7 +116,7 @@ function randomPasswordGenerator(length) {
     return pass;
 }
 
-var EncryptKey = "ZLINE";
+
 function encryptedAESdata(OriginalString) {
         var encryptedAES = CryptoJS.AES.encrypt(OriginalString, EncryptKey);
         return encryptedAES.toString();

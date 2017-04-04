@@ -7,9 +7,9 @@ app.factory('authService', function($http){
         login:function(data)
     { 
         var send=$http({
-          method: 'GET',
-          url: baseUrl+'/login/:'+data.email_id,
-          
+          method: 'POST',
+          url: 'http://localhost:3000/api/login',
+          data:data
         }).then(function successCallback(response) {
             return response;
           }, function errorCallback(response) {
@@ -34,6 +34,23 @@ app.factory('authService', function($http){
             });
             return send;
         },
+
+    // onCheckMail service
+
+    OnCheckMail: function(saveData) {
+        console.log("service"+JSON.stringify(saveData));
+            var send = $http({
+                method: 'GET',
+                url: baseUrl+'/checkemail/'+saveData.email_id,
+            }).then(function successCallback(response) {
+                console.log("SERVICE REG RESPONSE " + JSON.stringify(response.data, null, 2));
+                return response.data;
+            }, function errorCallback(response) {
+                return response.data;
+            });
+            return send;
+        },
+
 
 
 	}
