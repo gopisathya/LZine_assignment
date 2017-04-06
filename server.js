@@ -20,8 +20,10 @@ app.use('/',express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
+
 var jwt = require('jsonwebtoken');
 
+// google Api onLoadFunction
 function onLoadFunction() {
     gapi.client.setApis('AIzaSyBoq7uY_uBlvegU_3g-v8lxg_-l4YRaAfk');
     gapi.client.load('plus', 'v1', function(){})
@@ -59,6 +61,6 @@ app.listen(port,() => {
     var auth_model = require('./server/models/auth_model');
   
     // API CALLS
-    require('./server/api/auth_apis').AuthMaster(app, router, auth_model);
+    require('./server/api/auth_apis').AuthMaster(app, router, auth_model, jwt);
 
 module.exports = router;

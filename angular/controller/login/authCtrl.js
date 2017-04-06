@@ -7,7 +7,6 @@ $scope.gmail = {
 
 };
 
-
 // Login verification
 
 $scope.loginverified = function(carrymodel){
@@ -20,8 +19,14 @@ $scope.loginverified = function(carrymodel){
 	console.log("enter Login Function"+JSON.stringify(passmodel));
     authService.login(passmodel).then(function(response) 
       { 
-              console.info("result"+JSON.stringify(response.data));
+        console.log("enter  Function"+JSON.stringify(response.data.login));
+              if(response.data.login=="success"){
               $state.go('dashboard');
+          }
+          else{
+            alert("Login Failed please check out your email id and password!");
+            
+          }
 
    });
 

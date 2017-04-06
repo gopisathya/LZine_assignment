@@ -27,6 +27,9 @@
                       <label>Password</label>
                       <md-icon class="md-default-theme material-icons"><i class="zmdi zmdi-lock-outline" aria-hidden="true"></i></md-icon>
                       <input required  name="password"   type="password" ng-model="carrymodel.password" >
+                          <div ng-show="carrymodel.password" class={{loginclass}}>
+                          {{loginstatus}}
+                          </div>
                       </md-input-container>
                       </div>
                       </div>

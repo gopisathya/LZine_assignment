@@ -1,6 +1,6 @@
-var baseUrl = "http://localhost:3000/api";
 
-app.factory('authFactory', function($http,$q,$rootScope, $state, $location, $window,redirectToUrlAfterLogin){
+
+app.factory('authFactory', function($http, $q, $rootScope, $state, $location, redirectToUrlAfterLogin, $window) {
 	return{
 
   	isAuthenticated:function()
