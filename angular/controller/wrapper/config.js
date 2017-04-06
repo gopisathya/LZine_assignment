@@ -37,11 +37,6 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider){
                 controller: 'authCtrl' 
               }
             },
-             resolve: {
-                 authenticate: function(authFactory) {
-                     return authFactory.isAuthenticated();
-                 },
-               }
             
         })
 
